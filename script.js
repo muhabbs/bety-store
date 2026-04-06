@@ -83,7 +83,7 @@ if (contactForm) {
       formStatus.textContent = "Opening WhatsApp with your message...";
     }
 
-    window.open(`https://wa.me/201000000000?text=${whatsappMessage}`, "_blank", "noopener");
+    window.open(`https://wa.me/201000644355?text=${whatsappMessage}`, "_blank", "noopener");
     contactForm.reset();
   });
 }
