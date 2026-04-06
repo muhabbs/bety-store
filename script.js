@@ -76,7 +76,7 @@ if (contactForm) {
     }
 
     const whatsappMessage = encodeURIComponent(
-      `Hello A. Furniture,\nMy name is ${name}.\n${message}`
+      `Hello Bety,\nMy name is ${name}.\n${message}`
     );
 
     if (formStatus) {
