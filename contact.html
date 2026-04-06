@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Bety through WhatsApp, phone, Facebook, or a simple message form for furniture and lighting inquiries.">
-  <title>Bety | Contact</title>
+  <meta name="description" content="Place an order with Beity through a simple order form, WhatsApp, phone, or Facebook.">
+  <title>Beity | Order & Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,9 +16,9 @@
   <header class="site-header">
     <div class="container">
       <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="index.html" aria-label="Bety home">
+        <a class="brand" href="index.html" aria-label="Beity home">
           <span class="brand-text">
-            <strong>Bety</strong>
+            <strong>Beity</strong>
             <small>Furniture, Home Essentials &amp; Lighting</small>
           </span>
         </a>
@@ -33,8 +33,8 @@
           <a class="nav-link" href="index.html">Home</a>
           <a class="nav-link" href="products.html">Products</a>
           <a class="nav-link" href="about.html">About Us</a>
-          <a class="nav-link active" href="contact.html" aria-current="page">Contact</a>
-          <a class="button button-sm button-outline" href="https://wa.me/201000644355?text=Hello%20Bety%2C%20I%20want%20to%20contact%20your%20team." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="nav-link active" href="contact.html" aria-current="page">Order &amp; Contact</a>
+          <a class="button button-sm button-outline" href="https://wa.me/201000644355?text=Hello%20Beity%2C%20I%20want%20to%20contact%20your%20team." target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </nav>
     </div>
@@ -43,21 +43,36 @@
   <main id="main-content">
     <section class="page-hero page-hero-contact">
       <div class="container reveal">
-        <span class="eyebrow">Get in Touch</span>
-        <h1>Let's Help You Furnish Your Space with Confidence</h1>
-        <p>Reach out through WhatsApp, phone, Facebook, or send a quick message using the form below.</p>
+        <span class="eyebrow">Order &amp; Contact</span>
+        <h1>Send Order Requests and Save Them in Google Sheets</h1>
+        <p>Customers can place an order from this page. Once your Google Apps Script URL is connected, each order is sent straight to your Google Sheet.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container contact-layout">
         <div class="contact-panel reveal">
-          <span class="eyebrow">Main Contact</span>
-          <h2>Contact Us Anytime</h2>
-          <p>WhatsApp is the fastest way to reach us for pricing, availability, and product details.</p>
+          <span class="eyebrow">How It Works</span>
+          <h2>Collect Orders in One Place</h2>
+          <p>Use the order form for structured requests, or let customers reach you through WhatsApp, phone, and Facebook when they need a quick answer.</p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Step 1</strong>
+              <span>The customer chooses a product and opens the order form.</span>
+            </div>
+            <div class="info-item">
+              <strong>Step 2</strong>
+              <span>The form sends the order details to your Google Sheet after setup.</span>
+            </div>
+            <div class="info-item">
+              <strong>Step 3</strong>
+              <span>You review the order row in Google Sheets and contact the customer to confirm.</span>
+            </div>
+          </div>
 
           <div class="contact-list">
-            <a class="contact-item" href="https://wa.me/201000644355?text=Hello%20Bety%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer">
+            <a class="contact-item" href="https://wa.me/201000644355?text=Hello%20Beity%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer">
               <strong>WhatsApp</strong>
               <span>01000644355</span>
             </a>
@@ -73,17 +88,50 @@
         </div>
 
         <div class="contact-form-card reveal">
-          <span class="eyebrow">Quick Message</span>
-          <h2>Send a Message</h2>
-          <form class="contact-form" id="contactForm">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required>
+          <span class="eyebrow">Order Form</span>
+          <h2>Place an Order</h2>
+          <form class="contact-form" id="orderForm">
+            <div class="form-grid">
+              <div>
+                <label for="customerName">Customer Name</label>
+                <input id="customerName" name="name" type="text" placeholder="Full name" required>
+              </div>
+              <div>
+                <label for="customerPhone">Phone Number</label>
+                <input id="customerPhone" name="phone" type="tel" placeholder="01000644355" required>
+              </div>
+              <div>
+                <label for="productName">Product</label>
+                <input id="productName" name="product" type="text" placeholder="Product name" required>
+              </div>
+              <div>
+                <label for="productCategory">Category</label>
+                <input id="productCategory" name="category" type="text" placeholder="Living Rooms, Bedrooms, Lighting..." required>
+              </div>
+              <div>
+                <label for="quantity">Quantity</label>
+                <input id="quantity" name="quantity" type="number" min="1" value="1" required>
+              </div>
+              <div>
+                <label for="city">City / Area</label>
+                <input id="city" name="city" type="text" placeholder="Cairo, Giza, Alexandria...">
+              </div>
+            </div>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Tell us what you are looking for..." required></textarea>
+            <label for="preferredContact">Preferred Contact Method</label>
+            <select id="preferredContact" name="preferredContact">
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Phone Call">Phone Call</option>
+              <option value="Either">Either</option>
+            </select>
 
-            <button class="button button-primary" type="submit">Send via WhatsApp</button>
-            <p class="form-note">Submitting this form will open WhatsApp with your message ready to send.</p>
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="5" placeholder="Color, size, preferred delivery time, or anything else..."></textarea>
+
+            <input type="hidden" id="source" name="source" value="Website order form">
+
+            <button class="button button-primary" type="submit">Submit Order</button>
+            <p class="form-note">If Google Sheets is not connected yet, the form will fall back to WhatsApp so you still receive the order.</p>
             <p class="form-status" id="formStatus" aria-live="polite"></p>
           </form>
         </div>
@@ -94,7 +142,7 @@
   <footer class="site-footer">
     <div class="container footer-content">
       <div>
-        <h3>Bety</h3>
+        <h3>Beity</h3>
         <p>Furniture, Home Essentials &amp; Lighting</p>
         <p>We help customers choose furniture and lighting with confidence and ease.</p>
       </div>
@@ -103,7 +151,7 @@
         <a href="index.html">Home</a>
         <a href="products.html">Products</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html">Order &amp; Contact</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -113,11 +161,11 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; 2026 Bety. All rights reserved.</p>
+      <p>&copy; 2026 Beity. All rights reserved.</p>
     </div>
   </footer>
 
-  <a class="floating-whatsapp" href="https://wa.me/201000644355?text=Hello%20Bety%2C%20I%20would%20like%20to%20contact%20you." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <a class="floating-whatsapp" href="https://wa.me/201000644355?text=Hello%20Beity%2C%20I%20would%20like%20to%20contact%20you." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <span>WhatsApp</span>
   </a>
 
