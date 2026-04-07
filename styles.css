@@ -1051,6 +1051,79 @@ html[dir="rtl"] .site-footer {
   }
 }
 
+@media (min-width: 900px) {
+  .navbar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 1rem;
+  }
+
+  .brand {
+    min-width: max-content;
+  }
+
+  .nav-menu {
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.85rem;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    white-space: nowrap;
+  }
+
+  .nav-menu .button {
+    width: auto;
+    min-height: 2.85rem;
+    padding-inline: 1rem;
+  }
+
+  .navbar-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-self: end;
+    gap: 0.75rem;
+    margin-inline-start: 0;
+  }
+
+  .lang-switch {
+    min-height: 2.85rem;
+    padding: 0.3rem 0.78rem 0.3rem 0.35rem;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+
+  .lang-switch-text {
+    font-size: 0.84rem;
+  }
+
+  .nav-backdrop {
+    display: none !important;
+  }
+}
+
 @media (max-width: 560px) {
   .navbar {
     min-height: 74px;
