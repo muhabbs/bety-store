@@ -23,20 +23,28 @@
           </span>
         </a>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="فتح القائمة">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
         <div class="nav-menu" id="nav-menu">
           <a class="nav-link" href="index-ar.html">الرئيسية</a>
           <a class="nav-link active" href="products-ar.html" aria-current="page">المنتجات</a>
           <a class="nav-link" href="about-ar.html">من نحن</a>
           <a class="nav-link" href="contact-ar.html">الطلب والتواصل</a>
-          <a class="button button-sm button-outline" href="products.html">English</a>
           <a class="button button-sm button-outline" href="https://wa.me/201000644355?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A8%D9%8A%D8%AA%D9%8A%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D8%B1%D9%81%D8%A9%20%D9%85%D8%B2%D9%8A%D8%AF%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85." target="_blank" rel="noopener noreferrer">واتساب</a>
         </div>
+
+        <div class="navbar-actions">
+          <a class="lang-switch" href="products.html" aria-label="التبديل إلى الإنجليزية">
+            <span class="lang-switch-code">EN</span>
+            <span class="lang-switch-text">English</span>
+          </a>
+
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="فتح القائمة" data-open-label="فتح القائمة" data-close-label="إغلاق القائمة">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <button class="nav-backdrop" type="button" aria-label="إغلاق التنقل"></button>
       </nav>
     </div>
   </header>
