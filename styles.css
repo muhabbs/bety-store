@@ -721,6 +721,12 @@ p {
   padding-inline: 1.05rem;
 }
 
+.facebook-product-link.is-copied {
+  color: var(--color-forest-deep);
+  background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold));
+  border-color: transparent;
+}
+
 .form-grid {
   display: grid;
   gap: 0.9rem;

@@ -42,6 +42,7 @@ if ("IntersectionObserver" in window && revealItems.length > 0) {
 
 const filterButtons = document.querySelectorAll(".filter-button");
 const filterItems = document.querySelectorAll(".filter-item");
+const facebookProductLinks = document.querySelectorAll(".facebook-product-link");
 
 if (filterButtons.length > 0 && filterItems.length > 0) {
   filterButtons.forEach((button) => {
@@ -58,6 +59,31 @@ if (filterButtons.length > 0 && filterItems.length > 0) {
     });
   });
 }
+
+facebookProductLinks.forEach((link) => {
+  const originalLabel = link.textContent;
+
+  link.addEventListener("click", async () => {
+    const message = link.dataset.facebookMessage;
+
+    if (!message || !navigator.clipboard?.writeText) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(message);
+      link.textContent = "Copied Message";
+      link.classList.add("is-copied");
+
+      window.setTimeout(() => {
+        link.textContent = originalLabel;
+        link.classList.remove("is-copied");
+      }, 1800);
+    } catch (error) {
+      // If clipboard access fails, still allow the Facebook page to open normally.
+    }
+  });
+});
 
 const orderForm = document.querySelector("#orderForm");
 const formStatus = document.querySelector("#formStatus");
