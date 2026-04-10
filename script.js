@@ -98,6 +98,8 @@ const UI_TEXT = {
     productPlaceholder: "Choose a product",
     copiedMessage: "Copied Message",
     copiedMessenger: "Message copied. Paste it in Messenger.",
+    askWhatsAppLabel: "Ask on WhatsApp",
+    askFacebookLabel: "Ask on Facebook",
     missingFields: "Please fill in your name, phone number, category, and product first.",
     openingWhatsApp: "Opening WhatsApp with your order details...",
     openingFacebook: "Opening Facebook and copying your message...",
@@ -117,6 +119,8 @@ const UI_TEXT = {
     productPlaceholder: "اختر المنتج",
     copiedMessage: "تم نسخ الرسالة",
     copiedMessenger: "تم نسخ الرسالة. الصقها في ماسنجر.",
+    askWhatsAppLabel: "اسأل على واتساب",
+    askFacebookLabel: "اسأل على فيسبوك",
     missingFields: "من فضلك املأ الاسم ورقم الهاتف والفئة والمنتج أولاً.",
     openingWhatsApp: "جارٍ فتح واتساب مع تفاصيل الطلب...",
     openingFacebook: "جارٍ فتح فيسبوك ونسخ الرسالة...",
@@ -227,7 +231,6 @@ async function copyTextToClipboard(message) {
 }
 
 function openFacebookMessenger(message) {
-  copyTextToClipboard(message);
   window.open(STORE_CONFIG.facebookUrl, "_blank", "noopener");
 }
 
@@ -330,6 +333,33 @@ function preserveLanguageSwitchState() {
   langSwitch.setAttribute("href", `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`);
 }
 
+function configureProductActionLinks() {
+  whatsappProductLinks.forEach((link) => {
+    const message = buildAskMessage(link.dataset.productId);
+    if (!message) {
+      return;
+    }
+
+    link.setAttribute("href", `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+
+    if (!link.textContent.trim()) {
+      link.textContent = t("askWhatsAppLabel");
+    }
+  });
+
+  facebookProductLinks.forEach((link) => {
+    link.setAttribute("href", STORE_CONFIG.facebookUrl);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+
+    if (!link.textContent.trim()) {
+      link.textContent = t("askFacebookLabel");
+    }
+  });
+}
+
 if (navToggle && navMenu) {
   const openLabel = navToggle.dataset.openLabel || navToggle.getAttribute("aria-label") || "Open navigation";
   const closeLabel = navToggle.dataset.closeLabel || openLabel;
@@ -384,6 +414,7 @@ if (navToggle && navMenu) {
 }
 
 preserveLanguageSwitchState();
+configureProductActionLinks();
 
 if ("IntersectionObserver" in window && revealItems.length > 0) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -420,19 +451,24 @@ if (filterButtons.length > 0 && filterItems.length > 0) {
 
 whatsappProductLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
-    event.preventDefault();
     const message = buildAskMessage(link.dataset.productId);
     if (message) {
+      event.preventDefault();
       openWhatsApp(message);
     }
   });
 });
 
 facebookProductLinks.forEach((link) => {
-  const originalLabel = link.textContent;
+  const originalLabel = link.textContent.trim() || t("askFacebookLabel");
 
-  link.addEventListener("click", async () => {
+  link.addEventListener("click", async (event) => {
+    event.preventDefault();
     const message = buildAskMessage(link.dataset.productId);
+    if (!message) {
+      return;
+    }
+
     const copied = await copyTextToClipboard(message);
 
     if (copied) {
@@ -444,6 +480,8 @@ facebookProductLinks.forEach((link) => {
         link.classList.remove("is-copied");
       }, 1800);
     }
+
+    openFacebookMessenger(message);
   });
 });
 
